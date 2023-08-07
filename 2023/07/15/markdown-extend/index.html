@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"iwillwin.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.17.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Markdown扩展语法学习1234Markdown 是可以通过 [&#96;markdown-it-py&#96;](https:&#x2F;&#x2F;markdown-it-py.readthedocs.io&#x2F;en&#x2F;latest&#x2F;index.html) 来扩展语法。因为本项目的 Markdown 解析器是 MyST-NB (依赖 MyST )，相关的 Markdown 语法扩展的添加可以前往 &amp;#123;ref&amp;#125;&#96;可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown-extend">
+<meta property="og:url" content="https://iwillwin.github.io/2023/07/15/markdown-extend/index.html">
+<meta property="og:site_name" content="点滴记忆">
+<meta property="og:description" content="Markdown扩展语法学习1234Markdown 是可以通过 [&#96;markdown-it-py&#96;](https:&#x2F;&#x2F;markdown-it-py.readthedocs.io&#x2F;en&#x2F;latest&#x2F;index.html) 来扩展语法。因为本项目的 Markdown 解析器是 MyST-NB (依赖 MyST )，相关的 Markdown 语法扩展的添加可以前往 &amp;#123;ref&amp;#125;&#96;可">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-15T14:07:03.000Z">
+<meta property="article:modified_time" content="2023-07-15T14:07:22.736Z">
+<meta property="article:author" content="强者自强">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://iwillwin.github.io/2023/07/15/markdown-extend/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://iwillwin.github.io/2023/07/15/markdown-extend/","path":"2023/07/15/markdown-extend/","title":"markdown-extend"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>markdown-extend | 点滴记忆</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">点滴记忆</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">强者自强</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Markdown%E6%89%A9%E5%B1%95%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">Markdown扩展语法学习</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC"><span class="nav-number">1.1.</span> <span class="nav-text">表格</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%A1%A8%E6%A0%BC%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97"><span class="nav-number">1.1.1.</span> <span class="nav-text">格式化表格中的文字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%B4%E6%A0%8F%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">1.2.</span> <span class="nav-text">围栏代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">语法高亮</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%B3%A8"><span class="nav-number">1.3.</span> <span class="nav-text">脚注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%B8%85%E5%8D%95"><span class="nav-number">1.4.</span> <span class="nav-text">定义清单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%BA%BF"><span class="nav-number">1.5.</span> <span class="nav-text">删除线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E6%B8%85%E5%8D%95"><span class="nav-number">1.6.</span> <span class="nav-text">任务清单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5"><span class="nav-number">1.7.</span> <span class="nav-text">自动识别网址链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%81%E7%94%A8%E8%87%AA%E5%8A%A8URL%E9%93%BE%E6%8E%A5"><span class="nav-number">1.7.1.</span> <span class="nav-text">禁用自动URL链接</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">强者自强</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://iwillwin.github.io/2023/07/15/markdown-extend/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="强者自强">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="点滴记忆">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="markdown-extend | 点滴记忆">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          markdown-extend
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-07-15 22:07:03 / Modified: 22:07:22" itemprop="dateCreated datePublished" datetime="2023-07-15T22:07:03+08:00">2023-07-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Markdown扩展语法学习"><a href="#Markdown扩展语法学习" class="headerlink" title="Markdown扩展语法学习"></a>Markdown扩展语法学习</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Markdown 是可以通过 [`markdown-it-py`](https://markdown-it-py.readthedocs.io/en/latest/index.html) 来扩展语法。因为本项目的 Markdown 解析器是 MyST-NB (依赖 MyST )，相关的 Markdown 语法扩展的添加可以前往 &#123;ref&#125;`可选的 MyST 扩展语法 &lt;myst-opational-syntax&gt;` 查看。</span><br><span class="line"></span><br><span class="line">下文中 &#123;ref&#125;`定义清单 &lt;markdown-deflist-syntax&gt;` 和 &#123;ref&#125;`任务清单 &lt;markdown-tasklist-syntax&gt;` 以及 &#123;ref&#125;`自动识别网址链接 &lt;markdown-url-syntax&gt;` 都是通过 &#123;ref&#125;`可选的 MyST 扩展语法 &lt;myst-opational-syntax&gt;` 实现的。</span><br></pre></td></tr></table></figure>
+
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>要添加表，请使用三个或多个连字符（<code>---</code>）创建每列的标题，并使用管道（<code>|</code>）分隔每列。您可以选择在表的任一端添加管道。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| Syntax    | Description |</span><br><span class="line">| --------- | ----------- |</span><br><span class="line">| Header    | Title       |</span><br><span class="line">| Paragraph | Text        |</span><br></pre></td></tr></table></figure>
+
+<p>呈现的输出如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>Syntax</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Header</td>
+<td>Title</td>
+</tr>
+<tr>
+<td>Paragraph</td>
+<td>Text</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p> <strong>提示：</strong> 使用连字符和管道创建表可能很麻烦。为了加快这一过程，请尝试使用Markdown Tables Generator。使用图形界面构建表，然后将生成的Markdown格式的文本复制到文件中。当然也可以直接使用  Typora 编辑器，该编辑提供了表格的快速创建和编辑功能。</p>
+</blockquote>
+<h3 id="格式化表格中的文字"><a href="#格式化表格中的文字" class="headerlink" title="格式化表格中的文字"></a>格式化表格中的文字</h3><p>您可以格式化表格中的文本。例如，您可以添加<a target="_blank" rel="noopener" href="http://markdown.p2hp.com/basic-syntax/index.html#links">链接</a>，<a target="_blank" rel="noopener" href="http://markdown.p2hp.com/basic-syntax/index.html#code-1">代码</a>（&#96;&#96;&#96;仅在刻度线（）中显示单词或短语，而不能在<a target="_blank" rel="noopener" href="http://markdown.p2hp.com/basic-syntax/index.html#code-blocks">代码块中添加</a>）和<a target="_blank" rel="noopener" href="http://markdown.p2hp.com/basic-syntax/index.html#emphasis">强调</a>。</p>
+<p>您不能添加标题，块引用，列表，水平规则，图像或HTML标签。</p>
+<hr>
+<h2 id="围栏代码块"><a href="#围栏代码块" class="headerlink" title="围栏代码块"></a>围栏代码块</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">由于此电子书是基于 MyST Parser 来解析的，所以其代码高亮是适用 pygments 实现的； [点击查看关于代码高亮 pygments 支持的语言](https://pygments.org/languages/)。</span><br></pre></td></tr></table></figure>
+
+<p>Markdown基本语法允许您通过将行缩进四个空格或一个制表符来创建代码块。如果发现不方便，请尝试使用受保护的代码块。根据Markdown处理器或编辑器的不同，您将在代码块之前和之后的行上使用三个刻度线（<code>```</code>）或三个波浪号（~~~）。如果想要包含一个含有三个刻度线（&#96;&#96;&#96;），可以使用四个刻度：</p>
+<p>:::markdown</p>
+<p><code>```</code></p>
+<p>:::</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;firstName&quot;: &quot;John&quot;,</span><br><span class="line">&quot;lastName&quot;: &quot;Smith&quot;,</span><br><span class="line">&quot;age&quot;: 25</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>呈现的输出如下所示：</p>
+<p>:::{card}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;firstName&quot;: &quot;John&quot;,</span><br><span class="line">  &quot;lastName&quot;: &quot;Smith&quot;,</span><br><span class="line">  &quot;age&quot;: 25</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>:::</p>
+<h3 id="语法高亮"><a href="#语法高亮" class="headerlink" title="语法高亮"></a>语法高亮</h3><p>许多Markdown处理器都支持围栏代码块的语法突出显示。此功能使您可以为代码编写时使用的任何语言添加颜色突出显示。要添加语法突出显示，请在受防护的代码块之前的对号旁指定一种语言。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">```json</span></span><br><span class="line"><span class="code">&#123;</span></span><br><span class="line"><span class="code">  &quot;firstName&quot;: &quot;John&quot;,</span></span><br><span class="line"><span class="code">  &quot;lastName&quot;: &quot;Smith&quot;,</span></span><br><span class="line"><span class="code">  &quot;age&quot;: 25</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
+
+<p>呈现的输出如下所示：</p>
+<p>:::{card}</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;firstName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;John&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;lastName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Smith&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;age&quot;</span><span class="punctuation">:</span> <span class="number">25</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>:::</p>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><p>脚注使您可以添加注释和参考，而不会使文档正文混乱。创建脚注时，带有脚注引用的链接将出现带有链接的上标编号。读者可以单击链接跳至页面底部的脚注内容。</p>
+<p>要创建脚注参考，请在方括号（<code>[^1]</code>）内添加插入符号和标识符。标识符可以是数字或文字，但他们不能包含空格或制表符。标识符仅将脚注参考与脚注本身相关联-在输出中，脚注按顺序编号。</p>
+<p>在括号内使用另一个插入符号和数字添加脚注，并用冒号和文本（<code>[^1]: My footnote.</code>）括起来。您不必在文档末尾添加脚注。你可以把他们的任何地方，除了像列表一样，块报价，和表格等元素里面。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Here&#x27;s a simple footnote,[^1] and here&#x27;s a longer one.[^bignote]</span><br><span class="line"></span><br><span class="line">[^1]: This is the first footnote.</span><br><span class="line"></span><br><span class="line">[^bignote]: Here&#x27;s one with multiple paragraphs and code.</span><br><span class="line"></span><br><span class="line">    Indent paragraphs to include them in the footnote.</span><br><span class="line"></span><br><span class="line">    `&#123; my code &#125;`</span><br><span class="line"></span><br><span class="line">    Add as many paragraphs as you like.</span><br></pre></td></tr></table></figure>
+
+<p>呈现的输出如下所示：</p>
+<p>Here’s a simple footnote,[^1] and here’s a longer one.[^bignote]</p>
+<hr>
+<p>(markdown-deflist-syntax)&#x3D;</p>
+<h2 id="定义清单"><a href="#定义清单" class="headerlink" title="定义清单"></a>定义清单</h2><p>一些Markdown处理器允许您创建<em>自定义列表</em>和术语及其相应的定义。要创建定义列表，请在第一行上键入术语。下一行，键入一个冒号后跟一个空格和定义。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">First Term</span><br><span class="line">: This is the definition of the first term.</span><br><span class="line"></span><br><span class="line">Second Term</span><br><span class="line">: This is one definition of the second term.</span><br><span class="line">: This is another definition of the second term.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行效果：</p>
+</blockquote>
+<p>:::{card}</p>
+<dl><dt>First Term</dt><dd>This is the definition of the first term.</dd></dl><dl><dt>Second Term<br>: This is one definition of the second term.</dt><dd>This is another definition of the second term.</dd></dl><p>:::</p>
+<h2 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h2><p>您可以通过在单词中心放置一条水平线来“删除”单词。结果看起来<del>像这样</del>。此功能使您可以指示某些单词是一个错误，并不表示要包含在文档中。若要删除单词，请<code>~~</code>在单词前后使用两个波浪号（）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~The world is flat.~~ We now know that the world is round.</span><br></pre></td></tr></table></figure>
+
+<p>呈现的输出如下所示：</p>
+<p><del>The world is flat.</del> We now know that the world is round.</p>
+<hr>
+<p>(markdown-tasklist-syntax)&#x3D;</p>
+<h2 id="任务清单"><a href="#任务清单" class="headerlink" title="任务清单"></a>任务清单</h2><p>任务列表使您可以创建带有复选框的项目列表。在支持任务列表的Markdown应用程序中，复选框将显示在内容旁边。要创建任务列表，请在任务列表项之前添加破折号（<code>-</code>）和方括号，并<code>[ ]</code>在其前面加上一个空格（）。要选择一个复选框，请<code>x</code>在方括号（<code>[x]</code>）之间添加in 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- [x] Write the press release</span><br><span class="line">- [ ] Update the website</span><br><span class="line">- [ ] Contact the media</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>呈现的输出如下所示：</p>
+</blockquote>
+<p>:::{card}</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Write the press release</li>
+<li><input disabled="" type="checkbox"> Update the website</li>
+<li><input disabled="" type="checkbox"> Contact the media</li>
+</ul>
+<p>:::</p>
+<p>(markdown-url-syntax)&#x3D;</p>
+<h2 id="自动识别网址链接"><a href="#自动识别网址链接" class="headerlink" title="自动识别网址链接"></a>自动识别网址链接</h2><p>许多Markdown处理器会自动将URL转换为链接。这意味着如果您输入<a href="http://www.example.com，即使您没有[使用方括号](http://markdown.p2hp.com/basic-syntax/index.html#links)，您的Markdown处理器也会自动将其转换为链接。">http://www.example.com，即使您没有[使用方括号](http://markdown.p2hp.com/basic-syntax/index.html#links)，您的Markdown处理器也会自动将其转换为链接。</a></p>
+<p>这个功能需要使用到 Markdown 的扩展 <a target="_blank" rel="noopener" href="https://github.com/tsutsu3/linkify-it-py">linkify-it-py</a>。要么直接 <code>pip install linkify-it-py</code> 或通过 <code>pip install myst-parser[linkify]</code> 安装 Python 模块。 相关笔记可前往笔记—— {ref}<code>可选的 MyST 扩展语法中的链接扩展语法的开启和使用 &lt;markdown-ext-syntax-linkify&gt;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.example.com</span><br></pre></td></tr></table></figure>
+
+<p>呈现的输出如下所示：</p>
+<p><a target="_blank" rel="noopener" href="http://www.example.com/">http://www.example.com</a></p>
+<h3 id="禁用自动URL链接"><a href="#禁用自动URL链接" class="headerlink" title="禁用自动URL链接"></a>禁用自动URL链接</h3><p>如果您不希望自动链接URL，则可以通过<a target="_blank" rel="noopener" href="http://markdown.p2hp.com/basic-syntax/index.html#code">将URL表示为</a>带有刻度线的<a target="_blank" rel="noopener" href="http://markdown.p2hp.com/basic-syntax/index.html#code">代码</a>来删除该链接。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`http://www.example.com`</span><br></pre></td></tr></table></figure>
+
+<p>呈现的输出如下所示：</p>
+<p><code>http://www.example.com</code></p>
+<p>[^1]: This is the first footnote.</p>
+<p>[^bignote]: Here’s one with multiple paragraphs and code.</p>
+<pre><code>Indent paragraphs to include them in the footnote.
+
+`&#123; my code &#125;`
+
+Add as many paragraphs as you like.
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/15/markdown-base/" rel="prev" title="markdown-base">
+                  <i class="fa fa-chevron-left"></i> markdown-base
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/15/git/" rel="next" title="git">
+                  git <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">豫ICP备2022006148号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">强者自强</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
